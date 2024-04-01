@@ -26,7 +26,7 @@ def dealer_registration(request):
     if request.method == 'POST':
         form = DealerRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
+             form.save()
             return redirect('dealer_home')  # Redirect to the home page upon successful registration
     else:
         form = DealerRegistrationForm()
@@ -40,8 +40,11 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')  # Redirect to the home page upon successful login
+            return redirect('dealer_home')  # Redirect to the home page upon successful login
+     
+
         else:
-            return HttpResponse('Error, user does not exist')
+            #return HttpResponse('Error, user does not exist')
+            return redirect('user_home') 
     else:
         return render(request, 'login.html')

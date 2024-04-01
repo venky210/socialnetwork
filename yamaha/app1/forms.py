@@ -12,4 +12,4 @@ class UserRegistrationForm(forms.ModelForm):
 class DealerRegistrationForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'password', 'email']
+        fields = ['username', 'password', 'email','role']
