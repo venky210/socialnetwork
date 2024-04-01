@@ -27,7 +27,7 @@ def dealer_registration(request):
         form = DealerRegistrationForm(request.POST)
         if form.is_valid():
              form.save()
-            return redirect('dealer_home')  # Redirect to the home page upon successful registration
+             return redirect('dealer_home')  # Redirect to the home page upon successful registration
     else:
         form = DealerRegistrationForm()
     return render(request, 'dealer_registration.html', {'form': form})
