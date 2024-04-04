@@ -13,3 +13,14 @@ class User(AbstractUser):
 
     def _str_(self):
         return self.username
+     
+# class Products(models.Model):
+#     name = models.CharField(max_length=100)
+#     description = models.TextField()
+#     price = models.IntegerField()
+#     dealar = models.ForeignKey(User, on_delete=models.CASCADE)
+#     image = models.CharField(max_length=200, default='default_image_url.jpg')
+
+#     def _str_(self):
+#         return self.name
+    
