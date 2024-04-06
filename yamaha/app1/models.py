@@ -13,6 +13,8 @@ class User(AbstractUser):
 
     def _str_(self):
         return self.username
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # Call the save method of the parent cla
      
 # class Products(models.Model):
 #     name = models.CharField(max_length=100)
