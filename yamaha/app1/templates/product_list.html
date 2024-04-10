@@ -9,29 +9,28 @@
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
         h1 {
             text-align: center;
-            margin-top: 30px;
+            margin-bottom: 30px;
             color: #333;
         }
         ul {
             list-style-type: none;
+            margin: 0;
             padding: 0;
-            margin: 20px auto;
-            max-width: 800px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
         }
         li {
-            background-color: #fff;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            width: calc(33.33% - 20px);
             margin-bottom: 20px;
+            background-color: #fff;
             border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            width: 300px;
         }
         .card {
             width: 100%;
@@ -53,16 +52,23 @@
             color: #666;
         }
         .btn {
-            background-color: #28a745;
-            color: #fff;
-            border: none;
             padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+        }
+        .btn-danger {
+            background-color: #dc3545;
         }
         .btn:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -72,19 +78,21 @@
         {% for product in products %}
         <li>
             <div class="card">
-                <img class="card-img-top" src="{{ product.image }}" alt="product Image">
+                <img class="card-img-top" src="{{ product.image }}" alt="Product Image">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">Discount - 30% - ${{ product.price }}</p>
                     <p class="card-text">Quantity - {{ product.quantity }}</p>
-                    <form method="post" action="{% url 'add_to_wishlist' product.id %}" style="display: flex;">
+                    <a href="{% url 'update_product' product.id %}" class="btn btn-primary">Update</a>
+                    <form method="post" action="{% url 'delete_product' product.id %}" style="display: inline;">
                         {% csrf_token %}
-                        <button type="submit" class="btn">Add to Wishlist</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </div>
             </div>
         </li>
         {% endfor %}
     </ul>
+    <a href="{% url 'add_product' %}" class="btn btn-primary">Add Product</a>
 </body>
 </html>

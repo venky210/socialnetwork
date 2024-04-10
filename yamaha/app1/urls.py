@@ -1,12 +1,52 @@
 from django.urls import path
-from .views import home, user_home, dealer_home, user_registration, dealer_registration, signin#product_home
-#from .import views
+from . import views
+
 urlpatterns = [
-    path('', home, name='home'),
-    path('user_home/', user_home, name='user_home'),
-    path('dealer_home/', dealer_home, name='dealer_home'),
-    path('user_registration/', user_registration, name='user_registration'),
-    path('dealer_registration/', dealer_registration, name='dealer_registration'),
-    path('login/', signin, name='login'),
-    #path('product_home/',product_home, name='product_home')
+    path('', views.main_home, name='main_home'),
+    path('registration/', views.registration, name='registration'),
+    path('login/', views.user_login, name='login'),
+    path('user_home/', views.user_home, name='user_home'),
+    path('product_list/', views.product_list, name='product_list'),
+    path('add_product/', views.add_product, name='add_product'),
+    path('update_product/<int:product_id>/', views.update_product, name='update_product'),
+    path('delete_product/<int:product_id>/', views.delete_product, name='delete_product'),
+    path('wishlist/', views.wishlist, name='wishlist'),
+    path('add-to-wishlist/<int:product_id>/', views.add_to_wishlist, name='add_to_wishlist'),
+    path('remove-from-wishlist/<int:wishlist_item_id>/', views.remove_from_wishlist, name='remove_from_wishlist'),
+    
+   
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# from django.urls import path
+# from . import views
+
+# urlpatterns = [
+#     path('', views.main_home, name='main_home'),
+#     path('user/', views.user_home, name='user_home'),
+#     path('dealer/', views.dealer_home, name='dealer_home'),
+#     path('registration/', views.registration, name='registration'),
+#     path('login/', views.login, name='login'),
+# ]

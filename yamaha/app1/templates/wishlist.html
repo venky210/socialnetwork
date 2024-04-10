@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        li {
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .wishlist-item {
+            padding: 20px;
+        }
+        h3 {
+            margin: 0;
+            color: #333;
+        }
+        p {
+            margin: 10px 0;
+            color: #666;
+        }
+        button {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wishlist</h1>
+    <ul>
+        {% for item in wishlist_items %}
+        <li>
+            <div class="wishlist-item">
+                <h3>{{ item.product.name }}</h3>
+                <p>Price: ${{ item.product.price }}</p>
+                <p>Quantity: {{ item.product.quantity }}</p>
+                <form method="post" action="{% url 'remove_from_wishlist' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Remove from Wishlist</button>
+                </form>
+            </div>
+        </li>
+        {% empty %}
+        <li>Your wishlist is empty.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

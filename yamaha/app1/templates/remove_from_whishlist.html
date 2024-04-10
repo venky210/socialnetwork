@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove from Wishlist</title>
+</head>
+<body>
+    <h2>Remove from Wishlist</h2>
+    <p>Product Name: {{ wishlist_item.product.name }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to remove this item from your wishlist?</p>
+        <button type="submit">Remove from Wishlist</button>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

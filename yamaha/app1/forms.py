@@ -1,37 +1,47 @@
-# forms.py
+
+from .models import Product, Wishlist
 from django import forms
 from .models import User
-from django.contrib.auth import login, authenticate
 
-class UserRegistrationForm(forms.ModelForm): 
+class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
+    is_dealer = forms.BooleanField(label='Are you a dealer?', required=False)
 
     class Meta:
         model = User
-        fields = ['username', 'password', 'email','role']
-        
-class DealerRegistrationForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['username', 'password', 'email','role']
-
-# class ProductForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ['name', 'price', 'quantity','image']        
-
-class UserLoginForm(forms.Form):
-    username = forms.CharField(max_length=150)
-    password = forms.CharField(widget=forms.PasswordInput)
+        fields = ['username', 'email', 'password', 'is_dealer', 'dealer_details']
+        labels = {
+            'username': 'Username',
+            'email': 'Email',
+            'password': 'Password',
+            'dealer_details': 'Dealer Details (if applicable)',
+        }
 
     def clean(self):
         cleaned_data = super().clean()
-        username = cleaned_data.get('username')
-        password = cleaned_data.get('password')
+        is_dealer = cleaned_data.get('is_dealer')
+        dealer_details = cleaned_data.get('dealer_details')
 
-        if username and password:
-            user = authenticate(username=username, password=password)
-            if not user or not user.is_active:
-                raise forms.ValidationError("Invalid username or password.")
+        if is_dealer and not dealer_details:
+            raise forms.ValidationError('Dealer details are required for dealer registration')
 
         return cleaned_data
+    
+    
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'quantity','price', 'image']
+        labels = {
+            'name': 'Name',
+            'quantity': 'Quantity',
+            'price': 'Price',
+            'image': 'Image',
+        }
+
+
+
+class WishlistForm(forms.ModelForm):
+    class Meta:
+        model = Wishlist
+        fields = []

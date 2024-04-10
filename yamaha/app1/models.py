@@ -1,28 +1,41 @@
+
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+
 
 class User(AbstractUser):
+    dealer_details = models.CharField(max_length=100, blank=True, null=True)
+
     class Role(models.TextChoices):
-        USER = 'USERS', 'Users'
-        DEALER = 'DEALER', 'Dealer'
+        USERS = 'users', 'Users'
+        DEALER = 'dealer', 'Dealer'
+    role = models.CharField(max_length=20, choices=Role.choices, default=Role.USERS)
 
-    role = models.CharField(max_length=70, choices=Role.choices, default=Role.USER)
-    dealer_field = models.CharField(max_length=100, blank=True, null=True)
-
-    def _str_(self):
+    def __str__(self):
         return self.username
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # Call the save method of the parent cla
-     
-# class Products(models.Model):
-#     name = models.CharField(max_length=100)
-#     description = models.TextField()
-#     price = models.IntegerField()
-#     dealar = models.ForeignKey(User, on_delete=models.CASCADE)
-#     image = models.CharField(max_length=200, default='default_image_url.jpg')
 
-#     def _str_(self):
-#         return self.name
     
+class Product(models.Model):
+    dealer = models.ForeignKey(User, on_delete=models.CASCADE,blank=True,null=True)
+    name = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    quantity = models.PositiveIntegerField(default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    image = models.CharField(max_length=300,default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
+
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,blank=True,null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username}'s wishlist: {self.product.name}"

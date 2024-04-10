@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>User Registration</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +17,7 @@
             color: #333;
         }
         form {
-            max-width: 300px;
+            max-width: 400px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
@@ -49,11 +49,11 @@
     </style>
 </head>
 <body>
-    <h2>Login</h2>
+    <h2>User Registration</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
     </form>
 </body>
 </html>
