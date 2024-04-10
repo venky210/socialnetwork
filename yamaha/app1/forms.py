@@ -9,21 +9,24 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'is_dealer', 'dealer_details']
+        fields = ['username', 'email', 'password', 'is_dealer']
+        help_texts={'username':''}
         labels = {
             'username': 'Username',
             'email': 'Email',
             'password': 'Password',
-            'dealer_details': 'Dealer Details (if applicable)',
+           
+            
         }
+        
 
     def clean(self):
         cleaned_data = super().clean()
         is_dealer = cleaned_data.get('is_dealer')
         dealer_details = cleaned_data.get('dealer_details')
 
-        if is_dealer and not dealer_details:
-            raise forms.ValidationError('Dealer details are required for dealer registration')
+        # if is_dealer and not dealer_details:
+        #     raise forms.ValidationError('Dealer details are required for dealer registration')
 
         return cleaned_data
     

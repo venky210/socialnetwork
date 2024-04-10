@@ -47,17 +47,17 @@ def user_login(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-@login_required
+
 def user_home(request):
     products = Product.objects.all()
     return render(request, 'user_home.html', {'products': products})
 
-@login_required
+
 def product_list(request):
     products = Product.objects.filter(dealer=request.user)
     return render(request, 'product_list.html', {'products': products})
 
-@login_required
+
 def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
@@ -70,7 +70,6 @@ def add_product(request):
         form = ProductForm()
     return render(request, 'add_product.html', {'form': form})
 
-@login_required
 def update_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id, dealer=request.user)
     if request.method == 'POST':
@@ -82,7 +81,7 @@ def update_product(request, product_id):
         form = ProductForm(instance=product)
     return render(request, 'update_product.html', {'form': form})
 
-@login_required
+
 def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id, dealer=request.user)
     if request.method == 'POST':
@@ -92,12 +91,12 @@ def delete_product(request, product_id):
 
 
 
-@login_required
+
 def wishlist(request):
     wishlist_items = Wishlist.objects.filter(user=request.user)
     return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
 
-@login_required
+
 def add_to_wishlist(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     existing_wishlist_item = Wishlist.objects.filter(user=request.user, product=product).first()
@@ -121,7 +120,7 @@ def add_to_wishlist(request, product_id):
     return render(request, 'add_to_wishlist.html', {'form': form, 'product': product})
 
 
-@login_required
+
 def remove_from_wishlist(request, wishlist_item_id):
     wishlist_item = get_object_or_404(Wishlist, pk=wishlist_item_id, user=request.user)
 
