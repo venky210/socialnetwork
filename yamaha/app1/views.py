@@ -57,6 +57,13 @@ def product_list(request):
     products = Product.objects.filter(dealer=request.user)
     return render(request, 'product_list.html', {'products': products})
 
+def search_products(request):
+    query = request.GET.get('query')
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
+    return render(request, 'search_results.html', {'products': products, 'query': query})
 
 def add_product(request):
     if request.method == 'POST':
@@ -130,3 +137,7 @@ def remove_from_wishlist(request, wishlist_item_id):
         return redirect('wishlist')
 
     return redirect('wishlist') 
+
+
+
+
