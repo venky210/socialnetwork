@@ -27,22 +27,22 @@
         }
         li {
             background-color: #fff;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
             margin-bottom: 20px;
             border-radius: 8px;
             overflow: hidden;
-            width: 300px;
+            width: calc(33.33% - 20px);
         }
         .card {
             width: 100%;
         }
         .card-img-top {
             width: 100%;
-            height: 250px;
+            height: 200px;
             object-fit: cover;
         }
         .card-body {
-            padding: 20px;
+            padding: 5px;
         }
         .card-title {
             margin: 0;
@@ -67,15 +67,15 @@
     </style>
 </head>
 <body>
-    <h1>Product List</h1>
+    <h1>User home</h1>
     <ul>
         {% for product in products %}
         <li>
             <div class="card">
                 <img class="card-img-top" src="{{ product.image }}" alt="product Image">
                 <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">Discount - 30% - ${{ product.price }}</p>
+                    <h2 class="card-title">{{ product.name }}</h2>
+                    <p class="card-text">Discount - 30% - {{ product.price }}</p>
                     <p class="card-text">Quantity - {{ product.quantity }}</p>
                     <form method="post" action="{% url 'add_to_wishlist' product.id %}" style="display: flex;">
                         {% csrf_token %}
@@ -87,4 +87,4 @@
         {% endfor %}
     </ul>
 </body>
-</html>
+</html> 

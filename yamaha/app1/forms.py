@@ -5,16 +5,16 @@ from .models import User
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
-    is_dealer = forms.BooleanField(label='Are you a dealer?', required=False)
+    is_dealer = forms.BooleanField(label='Are you a dealer?',required=False)
 
     class Meta:
         model = User
         fields = ['username', 'email', 'password', 'is_dealer']
         help_texts={'username':''}
         labels = {
-            'username': 'Username',
-            'email': 'Email',
-            'password': 'Password',
+            'username': 'Username ',
+            'email'   : 'Email       ',
+            'password': 'Password  ',
            
             
         }
@@ -36,10 +36,10 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['name', 'quantity','price', 'image']
         labels = {
-            'name': 'Name',
-            'quantity': 'Quantity',
-            'price': 'Price',
-            'image': 'Image',
+            'name'    : 'Name  ',
+            'quantity': 'Quantity ',
+            'price'   : 'Price ',
+            'image'   : 'Image ',
         }
 
 
