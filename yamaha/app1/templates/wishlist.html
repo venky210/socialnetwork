@@ -60,8 +60,9 @@
         {% for item in wishlist_items %}
         <li>
             <div class="wishlist-item">
+                <img class="card-img-top" src="{{ product.image }}" alt="Product Image">
                 <h3>{{ item.product.name }}</h3>
-                <p>Price: ${{ item.product.price }}</p>
+                <p>Price: {{ item.product.price }}</p>
                 <p>Quantity: {{ item.product.quantity }}</p>
                 <form method="post" action="{% url 'remove_from_wishlist' item.id %}">
                     {% csrf_token %}
