@@ -1,10 +1,12 @@
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
+from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegistrationForm, ProductForm, WishlistForm
+from .forms import RegistrationForm, ProductForm, WishlistForm,ProfileUpdateForm
 from .models import User, Product, Wishlist
+
+ 
 
 
 def main_home(request):
@@ -140,4 +142,35 @@ def remove_from_wishlist(request, wishlist_item_id):
 
 
 
+def profile(request):
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile picture has been updated!')
+            return redirect('profile')
+    else:
+        form = ProfileUpdateForm(instance=request.user.profile)
+    return render(request, 'profile.html', {'form': form})
 
+
+
+def home(request):
+    return render(request, 'home.html')
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # type: ignore # Important to keep the user logged in
+            return redirect('home')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change_password.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')

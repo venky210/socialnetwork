@@ -2,6 +2,7 @@
 from .models import Product, Wishlist
 from django import forms
 from .models import User
+from django.contrib.auth.forms import PasswordChangeForm
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -48,3 +49,20 @@ class WishlistForm(forms.ModelForm):
     class Meta:
         model = Wishlist
         fields = []
+
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_picture']
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+
+        # Customize field labels (optional)
+        self.fields['old_password'].label = 'Old Password'
+        self.fields['new_password1'].label = 'New Password'
+        self.fields['new_password2'].label = 'Confirm New Password'

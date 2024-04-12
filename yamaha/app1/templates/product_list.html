@@ -25,8 +25,8 @@
             justify-content: space-around;
         }
         li {
-            width: calc(23.33% - 20px);
-            margin-bottom: 20px;
+            width: calc(25.33% - 20px);
+            margin-bottom: 10px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -41,7 +41,7 @@
             object-fit: cover;
         }
         .card-body {
-            padding: 5px;
+            padding: 20px;
         }
         .card-title {
             margin: 10;
@@ -73,13 +73,13 @@
     </style>
 </head>
 <body>
-    <a  href="{% url 'add_product' %}" align=right class="btn btn-primary">Add Product</a>
-    <h1>Product List</h1>
-    <form action="{% url 'search_products' %}" method="GET" style="margin-bottom: 20px;">
+    <a  href="{% url 'add_product' %}"  class="btn btn-primary">Add Product</a>
+
+    <form align=right action="{% url 'search_products' %}" method="GET" style="margin-bottom: 20px;">
         <input type="text" name="query" placeholder="Search products...">
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button   type="submit" class="btn btn-primary">Search</button>
     </form>
-    
+    <h1>Product List</h1>
 
     <ul>
         {% for product in products %}
