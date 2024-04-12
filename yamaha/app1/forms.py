@@ -1,7 +1,7 @@
 
 from .models import Product, Wishlist
 from django import forms
-from .models import User
+from .models import User,Profile
 from django.contrib.auth.forms import PasswordChangeForm
 
 class RegistrationForm(forms.ModelForm):
