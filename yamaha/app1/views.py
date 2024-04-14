@@ -1,9 +1,8 @@
 from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 from django.contrib.auth import authenticate, login,logout
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegistrationForm, ProductForm, WishlistForm,ProfileUpdateForm
+from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
+from .forms import RegistrationForm, ProductForm, WishlistForm,profileform
 from .models import User, Product, Wishlist
 
  
@@ -141,36 +140,32 @@ def remove_from_wishlist(request, wishlist_item_id):
     return redirect('wishlist') 
 
 
-
-def profile(request):
-    if request.method == 'POST':
-        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your profile picture has been updated!')
-            return redirect('profile')
-    else:
-        form = ProfileUpdateForm(instance=request.user.profile)
-    return render(request, 'profile.html', {'form': form})
-
-
-
-def home(request):
-    return render(request, 'home.html')
+def logoutpage(request):
+    logout(request)
+    return render(request,'main_home.html')
 
 
 def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
+    if request.method=='POST':
+        pw=request.POST['pw']
+        username=request.session.get('username')
+        UO=User.objects.get(username=username)
+        UO.set_password(pw)
+        UO.save()
+        return HttpResponse('Password changed Successfully')
+    return render(request,'change_password.html')
+
+def profile_edit(request):
+    form=profileform()
+    user=request.user
+    if request.method=='POST':
+        form=profileform(request.POST,instance=user)
         if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # type: ignore # Important to keep the user logged in
-            return redirect('home')
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'change_password.html', {'form': form})
+            form.save()
+            return HttpResponse('<h1>Profile Edit Successfully....</h1>')
+
+    return render(request,'profile_edit.html',{'form':form})
 
 
-def logout_view(request):
-    logout(request)
-    return redirect('home')
+
+

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Profile_Edit</title>
+{% endblock %}
+
+{% block block_body %}
+
+<center>
+    <h1>Profile Edit</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Update">
+    </form>
+</center>
+{% endblock %}

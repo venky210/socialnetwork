@@ -51,18 +51,24 @@ class WishlistForm(forms.ModelForm):
         fields = []
 
 
-
-class ProfileUpdateForm(forms.ModelForm):
+class profileform(forms.ModelForm):
     class Meta:
-        model = Profile
-        fields = ['profile_picture']
+        model=User
+        fields=['username','email']
+        help_texts={'username':''}
 
 
-class CustomPasswordChangeForm(PasswordChangeForm):
-    def __init__(self, *args, **kwargs):
-        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+# class ProfileUpdateForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields = ['profile_picture']
 
-        # Customize field labels (optional)
-        self.fields['old_password'].label = 'Old Password'
-        self.fields['new_password1'].label = 'New Password'
-        self.fields['new_password2'].label = 'Confirm New Password'
+
+# class CustomPasswordChangeForm(PasswordChangeForm):
+#     def __init__(self, *args, **kwargs):
+#         super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+
+#         # Customize field labels (optional)
+#         self.fields['old_password'].label = 'Old Password'
+#         self.fields['new_password1'].label = 'New Password'
+#         self.fields['new_password2'].label = 'Confirm New Password'
