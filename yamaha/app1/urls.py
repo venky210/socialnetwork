@@ -17,6 +17,7 @@ urlpatterns = [
     path('change_password/', views.change_password, name='change_password'),
     path('profile_edit/', views.profile_edit, name='profile_edit'),
     path('logoutpage/', views.logoutpage, name='logoutpage'),
+    path('create_category/', views.create_category, name='create_category'),
 ]
 
 

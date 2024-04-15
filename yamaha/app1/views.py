@@ -2,7 +2,7 @@ from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
-from .forms import RegistrationForm, ProductForm, WishlistForm,profileform
+from .forms import RegistrationForm, ProductForm, WishlistForm,profileform,CategoryForm
 from .models import User, Product, Wishlist
 
  
@@ -166,6 +166,17 @@ def profile_edit(request):
 
     return render(request,'profile_edit.html',{'form':form})
 
+
+
+def create_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('some-success-url')  # Redirect to a success page
+    else:
+        form = CategoryForm()
+    return render(request, 'category.html', {'form': form})
 
 
 

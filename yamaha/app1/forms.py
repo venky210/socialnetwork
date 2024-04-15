@@ -1,8 +1,8 @@
 
 from .models import Product, Wishlist
 from django import forms
-from .models import User,Profile
-from django.contrib.auth.forms import PasswordChangeForm
+from .models import User,Profile,category
+
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -35,12 +35,13 @@ class RegistrationForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'quantity','price', 'image']
+        fields = ['name', 'quantity','price', 'image','category']
         labels = {
             'name'    : 'Name  ',
             'quantity': 'Quantity ',
             'price'   : 'Price ',
             'image'   : 'Image ',
+            
         }
 
 
@@ -58,17 +59,10 @@ class profileform(forms.ModelForm):
         help_texts={'username':''}
 
 
-# class ProfileUpdateForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
-#         fields = ['profile_picture']
 
 
-# class CustomPasswordChangeForm(PasswordChangeForm):
-#     def __init__(self, *args, **kwargs):
-#         super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = category
+        fields = ['name']
 
-#         # Customize field labels (optional)
-#         self.fields['old_password'].label = 'Old Password'
-#         self.fields['new_password1'].label = 'New Password'
-#         self.fields['new_password2'].label = 'Confirm New Password'
