@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
 from .forms import RegistrationForm, ProductForm, WishlistForm,profileform,CategoryForm
-from .models import User, Product, Wishlist
+from .models import User, Product, Wishlist,Category
 
  
 
@@ -40,6 +40,8 @@ def user_login(request):
                 login(request, user)
                 if user.role == User.Role.DEALER:
                     return redirect('add_product')
+                elif user.ADMIN:
+                    return redirect('create_category')
                 else:
                     return redirect('user_home')
             else:
@@ -168,6 +170,11 @@ def profile_edit(request):
 
 
 
+def list_categories(request):
+    categories = Category.objects.all()
+    return render(request, 'list_categories.html', {'categories': categories})
+
+
 def create_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -178,5 +185,22 @@ def create_category(request):
         form = CategoryForm()
     return render(request, 'category.html', {'form': form})
 
+
+#from django.shortcuts import get_object_or_404, redirect
+
+def delete_category(request, category_id):
+    category = get_object_or_404(Category, pk=category_id)
+    if request.method == 'POST':
+        category.delete()
+        return redirect('some-success-url')  # Redirect to a success page
+    return render(request, 'delete_category.html', {'category': category})
+
+def update_category(request, category_id):
+    category = get_object_or_404(Category, pk=category_id)
+    form = CategoryForm(request.POST or None, instance=category)
+    if form.is_valid():
+        form.save()
+        return redirect('some-success-url')  # Redirect to a success page
+    return render(request, 'update_category.html', {'form': form, 'category': category})
 
 

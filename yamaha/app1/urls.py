@@ -18,6 +18,9 @@ urlpatterns = [
     path('profile_edit/', views.profile_edit, name='profile_edit'),
     path('logoutpage/', views.logoutpage, name='logoutpage'),
     path('create_category/', views.create_category, name='create_category'),
+    path('list_categories/', views.list_categories, name='list_categories'),
+    path('delete_category/', views.delete_category, name='delete_category'),
+    path('update_category/', views.update_category, name='update_category'),
 ]
 
 

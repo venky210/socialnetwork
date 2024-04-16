@@ -1,7 +1,7 @@
 
 from .models import Product, Wishlist
 from django import forms
-from .models import User,Profile,category
+from .models import User,Profile,Category
 
 
 class RegistrationForm(forms.ModelForm):
@@ -63,6 +63,6 @@ class profileform(forms.ModelForm):
 
 class CategoryForm(forms.ModelForm):
     class Meta:
-        model = category
+        model = Category
         fields = ['name']
 

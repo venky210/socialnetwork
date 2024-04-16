@@ -1,7 +1,7 @@
 from django.contrib import admin
-from . models import User,Product,Wishlist,category,Profile
+from . models import User,Product,Wishlist,Category,Profile
 admin.site.register(User)
 admin.site.register(Product)
 admin.site.register(Wishlist)
-admin.site.register(category)
+admin.site.register(Category)
 admin.site.register(Profile)
