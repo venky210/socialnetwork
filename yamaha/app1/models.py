@@ -9,7 +9,7 @@ class User(AbstractUser):
     dealer_details = models.CharField(max_length=100, blank=True, null=True)
 
     class Role(models.TextChoices):
-        USERS = 'users', 'Users'
+        USERS = 'users', 'Users' 
         DEALER = 'dealer', 'Dealer'
         ADMIN = 'admin','Admin'
     role = models.CharField(max_length=20, choices=Role.choices, default=Role.USERS)

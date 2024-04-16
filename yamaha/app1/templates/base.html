@@ -8,17 +8,18 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>{% block title %}main{% endblock %}</title>
+    
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Karthik Shoping</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button align=right class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false">
+           
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div   class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin:index' %}">Admin_Page</a>
+                   
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -34,7 +35,7 @@
                     <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a>
                         <a class="dropdown-item" href="{% url 'logoutpage' %}">Logout</a>
-                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'admin:index' %}">admin_page</a>
                         <a class="dropdown-item" href="{% url 'profile_edit' %}">Profile</a>
                     </div>
                 </li>

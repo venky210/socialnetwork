@@ -40,7 +40,8 @@ def user_login(request):
                 login(request, user)
                 if user.role == User.Role.DEALER:
                     return redirect('add_product')
-                elif user.ADMIN:
+                elif user.dealer_details == 'Category Management User':
+
                     return redirect('create_category')
                 else:
                     return redirect('user_home')
@@ -183,10 +184,10 @@ def create_category(request):
             return redirect('some-success-url')  # Redirect to a success page
     else:
         form = CategoryForm()
-    return render(request, 'category.html', {'form': form})
+    return render(request, 'create_category.html', {'form': form})
 
 
-#from django.shortcuts import get_object_or_404, redirect
+
 
 def delete_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
