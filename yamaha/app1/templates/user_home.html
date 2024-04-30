@@ -1,76 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Home</title>
+<{% extends 'base.html' %}                         
+{% block title %}
+<title>Product list</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            background-color: pink;
             margin: 0;
-            padding: 0;
+            padding: 10px;
         }
         h1 {
             text-align: center;
-            margin-top: 30px;
-            color: #333;
+            margin-bottom: 5px;
+            color: brown;
         }
         ul {
             list-style-type: none;
+            margin: 0;
             padding: 0;
-            margin: 20px auto;
-            max-width: 800px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
         }
         li {
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            border-radius: 8px;
+            width: calc(25.33% - 20px);
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(217, 228, 220, 0.1);
             overflow: hidden;
-            width: calc(28.33% - 20px);
         }
         .card {
             width: 100%;
         }
         .card-img-top {
             width: 100%;
-            height: 150px;
+            height: 200px;
             object-fit: cover;
         }
         .card-body {
-            padding: 5px;
+            padding: 8px;
         }
         .card-title {
-            margin: 0;
+            margin: 10;
             color: blue;
         }
         .card-text {
             margin: 10px 0;
-            color: #666;
+            color: black;
         }
         .btn {
-            background-color: #28a745;
-            color: #fff;
+            padding: 5px 20px;
+            margin-top: 5px;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            text-decoration: none;
+            color: white;
+            background-color: green;
+        }
+        .add-btn {
+            padding: 5px 20px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            color: white;
+            background-color: green;
+            font-size: 14opx;
+        }
+        .btn-primary {
+            background-color: green;
+        }
+        .btn-danger {
+            background-color: red;
         }
         .btn:hover {
-            background-color: #218838;
+            background-color: blue;
+        }
+        .form{
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap:5px;
+        }
+        .add-to-btn{
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap:5px;
+            width:100%;
+        }
+        .product-search{
+            margin-top: 5px;
         }
     </style>
-</head>
-<body>
+{% endblock %}
+{% block block_body %}
     <h1>Product list</h1>
-    <form align=right action="{% url 'search_products' %}" method="GET" style="margin-bottom: 20px;">
-        <input type="text" name="query" placeholder="Search products...">
-        <button   type="submit" class="btn btn-primary">Search</button>
+    <form action="{% url 'search_products' %}" method="GET" class="form">
+        <input type="text" name="query" placeholder="Search products..." class="product-search">
+        <button type="submit" class="btn btn-primary">Search</button>
     </form>
     <ul>
         {% for product in products %}
@@ -81,14 +115,20 @@
                     <h2 class="card-title">{{ product.name }}</h2>
                     <p class="card-text">Discount - 30% - {{ product.price }}</p>
                     <p class="card-text">Quantity - {{ product.quantity }}</p>
-                    <form method="post" action="{% url 'add_to_wishlist' product.id %}" style="display: flex;">
+                <div class="add-to-btn">
+                    <form method="post" action="{% url 'add_to_wishlist' product.id %}" >
                         {% csrf_token %}
-                        <button type="submit" class="btn">Add to Wishlist</button>
+                        <button type="submit" class="add-btn">Add to Wishlist</button>
                     </form>
+                        <form method="post" action="{% url 'add_to_cart' product.id %}"> 
+                            {% csrf_token %}
+                            <button type="submit" class="add-btn">Add to cart</button>
+                        </form>
+                    </div>
+                    
                 </div>
             </div>
         </li>
         {% endfor %}
     </ul>
-</body>
-</html> 
+{% endblock%}

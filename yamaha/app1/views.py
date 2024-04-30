@@ -2,17 +2,14 @@ from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
-from .forms import RegistrationForm, ProductForm, WishlistForm,profileform,CategoryForm
+from .forms import RegistrationForm, ProductForm, WishlistForm,profileform,CategoryForm,AddToCartForm
 from .models import User, Product, Wishlist,Category
-
- 
-
 
 def main_home(request):
     return render(request, 'main_home.html')
 
 def registration(request):
-    if request.method == 'POST':
+    if request.method == 'POST': 
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
@@ -87,7 +84,7 @@ def update_product(request, product_id):
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('product_list')
+            return redirect('product_list') 
     else:
         form = ProductForm(instance=product)
     return render(request, 'update_product.html', {'form': form})
@@ -99,13 +96,6 @@ def delete_product(request, product_id):
         product.delete()
         return redirect('product_list')
     return render(request, 'delete_product.html', {'product': product})
-
-
-
-
-def wishlist(request):
-    wishlist_items = Wishlist.objects.filter(user=request.user)
-    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
 
 
 def add_to_wishlist(request, product_id):
@@ -130,6 +120,22 @@ def add_to_wishlist(request, product_id):
 
     return render(request, 'add_to_wishlist.html', {'form': form, 'product': product})
 
+def wishlist(request):
+    wishlist_items = Wishlist.objects.filter(user=request.user)
+    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
+
+def add_to_cart(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    if request.method == 'POST':
+        form = AddToCartForm(request.POST)
+        if form.is_valid():
+            quantity = form.cleaned_data['quantity']
+            # Perform any necessary actions with the quantity and product
+            messages.success(request, f"{quantity} {product.name}(s) added to cart successfully.")
+            return redirect('product_detail', product_id=product_id)
+    else:
+        form = AddToCartForm()
+    return render(request, 'add_to_cart.html', {'form': form, 'product': product})
 
 
 def remove_from_wishlist(request, wishlist_item_id):
@@ -170,12 +176,6 @@ def profile_edit(request):
     return render(request,'profile_edit.html',{'form':form})
 
 
-
-def list_categories(request):
-    categories = Category.objects.all()
-    return render(request, 'list_categories.html', {'categories': categories})
-
-
 def create_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -188,6 +188,9 @@ def create_category(request):
 
 
 
+def list_categories(request):
+    categories = Category.objects.all()
+    return render(request, 'list_categories.html', {'categories': categories})
 
 def delete_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)

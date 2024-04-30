@@ -12,13 +12,7 @@ class RegistrationForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password', 'is_dealer']
         help_texts={'username':''}
-        labels = {
-            'username': 'Username ',
-            'email'   : 'Email       ',
-            'password': 'Password  ',
-           
-            
-        }
+       
         
 
     def clean(self):
@@ -36,13 +30,7 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['name', 'quantity','price', 'image','category']
-        labels = {
-            'name'    : 'Name  ',
-            'quantity': 'Quantity ',
-            'price'   : 'Price ',
-            'image'   : 'Image ',
-            
-        }
+
 
 
 
@@ -51,6 +39,10 @@ class WishlistForm(forms.ModelForm):
         model = Wishlist
         fields = []
 
+
+
+class AddToCartForm(forms.Form):
+    quantity = forms.IntegerField(min_value=1, initial=1, label='Quantity')
 
 class profileform(forms.ModelForm):
     class Meta:
@@ -61,10 +53,7 @@ class profileform(forms.ModelForm):
 
 
 
-# class CategoryForm(forms.ModelForm):
-#     class Meta:
-#         model = Category
-#         fields = ['name']
+
 
 class CategoryForm(forms.ModelForm):
     class Meta:
