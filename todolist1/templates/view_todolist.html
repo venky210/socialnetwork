@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        /* CSS for hovering over existing tasks */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #f0f0f0; /* Change background color on hover */
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>To-Do List</h2>
+    <center>
+        <h1>Add New Task</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" formaction="{% url 'todolist' %}">Add Task</button>
+        </form>
+        
+        <form action="" method="post">
+            <h3>Existing Tasks:</h3>
+            <ul>
+                {% for task in tasks %}
+                    <li>{{ task.title }}</li>
+                {% endfor %}
+            </ul>
+        </form>
+    </center>
+</body>
+</html>

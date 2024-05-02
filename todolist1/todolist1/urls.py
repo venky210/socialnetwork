@@ -23,4 +23,5 @@ urlpatterns = [
     path('registration/',registration,name='registration'),
     path('user_login/',user_login,name='user_login'),
     path('todolist/',todolist,name='todolist'),
+    path('view_todolist/',view_todolist,name='view_todolist'),
 ]
