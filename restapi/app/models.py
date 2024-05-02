@@ -41,7 +41,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-class Wishlist(models.Model):
+class WishlistItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
     time_stamp = models.DateTimeField(auto_now_add=True)

@@ -26,7 +26,14 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ['id','name', 'category', 'description', 'price', 'availability', 'variant']
         read_only_fields = ['id']
 
-class WishlistSerializer(serializers.ModelSerializer):
+class WishlistItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Wishlist
-        fields = ['user', 'product', 'time_stamp', 'last_modified', 'is_private', 'variant']
+        model = WishlistItem
+        fields = ['id', 'product', 'time_stamp', 'last_modified', 'is_private', 'variant']
+
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = ['id', 'user', 'product', 'quantity', 'time_stamp', 'variant', 'is_private', 'status']
+

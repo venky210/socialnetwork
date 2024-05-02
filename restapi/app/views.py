@@ -105,11 +105,54 @@ def delete_product(request, pk):
     
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def add_to_wishlist(request):
-    serializer = WishlistSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save(user=request.user)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+def add_product_to_wishlist(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if WishlistItem.objects.filter(user=request.user, product=product).exists():
+        return Response({"error": "Product already exists in the wishlist."}, status=status.HTTP_400_BAD_REQUEST)
+    wishlist_item = WishlistItem.objects.create(user=request.user, product=product)
+    serializer = WishlistItemSerializer(wishlist_item)
+
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def view_wishlist(request):
+    wishlist_items = WishlistItem.objects.filter(user=request.user)
+    serializer = WishlistItemSerializer(wishlist_items, many=True)
+    
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def remove_from_wishlist(request, wishlist_item_id):
+    try:
+        wishlist_item = WishlistItem.objects.get(pk=wishlist_item_id, user=request.user)
+    except WishlistItem.DoesNotExist:
+        return Response({"error": "Wishlist item not found."}, status=status.HTTP_404_NOT_FOUND)
+    wishlist_item.delete()
+    
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_product_to_cart(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    cart_item = Cart.objects.create(user=request.user, product=product)
+    serializer = CartSerializer(cart_item)
+
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def cart_list(request):
+    cart_items = Cart.objects.filter(user=request.user)
+    serializer = CartSerializer(cart_items, many=True) 
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def remove_from_cart(request, cart_item_id):
+    cart_item = get_object_or_404(Cart, pk=cart_item_id, user=request.user)
+    cart_item.delete()
+    return Response({"message": "Cart item removed successfully."}, status=status.HTTP_204_NO_CONTENT)
