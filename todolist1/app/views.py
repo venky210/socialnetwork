@@ -37,7 +37,7 @@ def user_login(request):
         if AUO and AUO.is_active:
             login(request, AUO)
             request.session['username'] = un
-            return redirect('tasklist')  # Assuming 'todolist' is the name of the URL pattern for todolist.html
+            return redirect('add_task')  # Assuming 'todolist' is the name of the URL pattern for todolist.html
         else:
             return HttpResponse('Provide Valid User And Password...')
         
@@ -45,14 +45,14 @@ def user_login(request):
 
 
 
-def tasklist(request):
+def add_task(request):
     form = tasklistform()
     if request.method == 'POST':
         form = tasklistform(request.POST)
         if form.is_valid():
             form.save()
             return redirect('view_tasklist')  # Redirect to the 'todolist' view
-    return render(request, 'tasklist.html', {'form': form})
+    return render(request, 'add_task.html', {'form': form})
 
 
 

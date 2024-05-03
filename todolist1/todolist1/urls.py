@@ -22,6 +22,6 @@ urlpatterns = [
     path('',homepage,name='homepage'),
     path('registration/',registration,name='registration'),
     path('user_login/',user_login,name='user_login'),
-    path('tasklist/',tasklist,name='tasklist'),
+    path('add_task/',add_task,name='add_task'),
     path('view_tasklist/',view_tasklist,name='view_tasklist'),
 ]
