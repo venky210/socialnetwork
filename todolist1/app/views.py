@@ -37,7 +37,7 @@ def user_login(request):
         if AUO and AUO.is_active:
             login(request, AUO)
             request.session['username'] = un
-            return redirect('todolist')  # Assuming 'todolist' is the name of the URL pattern for todolist.html
+            return redirect('tasklist')  # Assuming 'todolist' is the name of the URL pattern for todolist.html
         else:
             return HttpResponse('Provide Valid User And Password...')
         
@@ -45,17 +45,26 @@ def user_login(request):
 
 
 
-def todolist(request):
-    form = todolistform()
+def tasklist(request):
+    form = tasklistform()
     if request.method == 'POST':
-        form = todolistform(request.POST)
+        form = tasklistform(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('view_todolist')  # Redirect to the 'todolist' view
-    return render(request, 'todolist.html', {'form': form})
+            return redirect('view_tasklist')  # Redirect to the 'todolist' view
+    return render(request, 'tasklist.html', {'form': form})
 
 
 
-def view_todolist(request):
-    tasks = Todolist.objects.all()
-    return render(request, 'view_todolist.html', {'tasks': tasks})
+def view_tasklist(request):
+    tasks = Task.objects.all()
+    return render(request, 'view_tasklist.html', {'tasks': tasks})
+
+def search_tasks(request):
+    query = request.GET.get('query')
+    if query:
+        tasks = Task.objects.filter(name__icontains=query)
+    else:
+        tasks = Task.objects.all()
+    return render(request, 'search_results.html', {'tasks': tasks, 'query': query})
+

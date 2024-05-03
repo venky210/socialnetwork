@@ -9,7 +9,7 @@ class userform(forms.ModelForm):
         widgets={'password':forms.PasswordInput}
         help_texts={'username':''}
 
-class todolistform(forms.ModelForm):
+class tasklistform(forms.ModelForm):
     class Meta:
-        model=Todolist
+        model=Task
         fields='__all__'

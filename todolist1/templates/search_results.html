@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+
+    <form action="{% url 'search_tasks' %}" method="get">
+        <input type="text" name="query" placeholder="Search tasks..." value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if tasks %}
+        <ul>
+            {% for task in tasks %}
+                <li>{{ task.name }}</li>
+                <!-- You can display other attributes of the task here as well -->
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tasks found.</p>
+    {% endif %}
+</body>
+</html>
