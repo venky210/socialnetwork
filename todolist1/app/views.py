@@ -46,9 +46,9 @@ def user_login(request):
 
 
 def add_task(request):
-    form = tasklistform()
+    form = TaskForm()
     if request.method == 'POST':
-        form = tasklistform(request.POST)
+        form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('view_tasklist')  # Redirect to the 'todolist' view
