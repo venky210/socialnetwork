@@ -32,17 +32,22 @@
             {% csrf_token %}
 
             <button type="submit" formaction="{% url 'add_task' %}">Add Task</button>
-        
-        </form >
-        
-        <form action="" method="post">
-            <h3>Existing Tasks:</h3>
-            <ul>
-                {% for task in tasks %}
-                    <li>{{ task.title }}</li>
-                {% endfor %}
-            </ul>
         </form>
+        
+        <h3>Existing Tasks:</h3>
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    {{ task.title }}
+                    <form method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="task_id" value="{{ task.id }}">
+                        <button type="submit" formaction="{% url 'update_task' task.id %}">Update</button>
+                        <button type="submit" formaction="{% url 'delete_task' task.id %}">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
     </center>
 </body>
 </html>
