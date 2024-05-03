@@ -56,15 +56,6 @@ def search_tasks(request):
     return render(request, 'search_results.html', {'tasks': tasks, 'query': query})
     
 
-# def add_task(request):
-#     form = TaskForm()
-#     if request.method == 'POST':
-#         form = TaskForm(request.POST)
-#         if form.is_valid():
-
-#             form.save()
-#             return redirect('view_tasklist')  # Redirect to the 'todolist' view
-#     return render(request, 'add_task.html', {'form': form})
 def add_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
