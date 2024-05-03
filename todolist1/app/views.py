@@ -81,6 +81,15 @@ def update_task(request, task_id):
             return redirect('view_tasklist')  # Redirect to the 'view_tasklist' view
     return render(request, 'update_task.html', {'form': form})
 
+def pending_tasks(request):
+    pending_tasks = Task.objects.filter(completed=False)
+    return render(request, 'pending_tasks.html', {'pending_tasks': pending_tasks})
+
+
+def completed_tasks(request):
+    completed_tasks = Task.objects.filter(completed=True)
+    return render(request, 'completed_tasks.html', {'completed_tasks': completed_tasks})
+
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     if request.method == 'POST':

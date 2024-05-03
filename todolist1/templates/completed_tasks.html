@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed Tasks</title>
+    <!-- Add your CSS styles here -->
+</head>
+<body>
+    <h1>Completed Tasks</h1>
+    <ul>
+        {% for task in completed_tasks %}
+            <li>{{ task.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
