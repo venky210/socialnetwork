@@ -1,7 +1,9 @@
-from django.shortcuts import render,HttpResponse,redirect
+from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
 from app.forms import *
 from app.models import *
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
+ 
+
 
 # Create your views here.
 
@@ -45,6 +47,15 @@ def user_login(request):
 
 
 
+def search_tasks(request):
+    query = request.GET.get('query')
+    if query:
+        tasks = Task.objects.filter(name__icontains=query)
+    else:
+        tasks = Task.objects.all()
+    return render(request, 'search_results.html', {'tasks': tasks, 'query': query})
+    
+
 def add_task(request):
     form = TaskForm()
     if request.method == 'POST':
@@ -60,11 +71,23 @@ def view_tasklist(request):
     tasks = Task.objects.all()
     return render(request, 'view_tasklist.html', {'tasks': tasks})
 
-def search_tasks(request):
-    query = request.GET.get('query')
-    if query:
-        tasks = Task.objects.filter(name__icontains=query)
-    else:
-        tasks = Task.objects.all()
-    return render(request, 'search_results.html', {'tasks': tasks, 'query': query})
+def update_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    form = TaskForm(instance=task)
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('view_tasklist')  # Redirect to the 'view_tasklist' view
+    return render(request, 'update_task.html', {'form': form})
+
+def delete_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    if request.method == 'POST':
+        task.delete()
+        return redirect('view_tasklist')  # Redirect to the 'view_tasklist' view
+    return render(request, 'delete_task.html', {'task': task})
+
+def logout(request):
+    return render(request,'homepage.html')
 
