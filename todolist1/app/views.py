@@ -75,6 +75,9 @@ def view_tasklist(request):
     tasks = Task.objects.all()
     return render(request, 'view_tasklist.html', {'tasks': tasks})
 
+
+
+
 def update_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     form = TaskForm(instance=task)
