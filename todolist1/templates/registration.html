@@ -7,7 +7,7 @@
     <style>
         /* Center align the form */
         center {
-            text-align: center;
+            text-align: left;
             margin-top: 50px; /* Adjust margin as needed */
         }
 
@@ -43,6 +43,7 @@
 </head>
 <body>
     <center>
+        <h2>Registration page</h2>
         <form action="" method="POST">
             {% csrf_token %}
             {{ user.as_p }}
