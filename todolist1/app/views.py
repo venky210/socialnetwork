@@ -46,15 +46,14 @@ def user_login(request):
     return render(request, 'loginpage.html')
 
 
-
 def search_tasks(request):
     query = request.GET.get('query')
     if query:
-        tasks = Task.objects.filter(name__icontains=query)
+        tasks = Task.objects.filter(title__icontains=query)  # Assuming 'title' is the field you want to search
     else:
         tasks = Task.objects.all()
     return render(request, 'search_results.html', {'tasks': tasks, 'query': query})
-    
+
 
 def add_task(request):
     if request.method == 'POST':

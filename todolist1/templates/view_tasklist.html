@@ -91,9 +91,14 @@
         <a class="anchor" href="{% url 'logout' %}">Logout</a>
       </div>
       <h1>To-Do List</h1>
+      
 
       <div>
         <h2>Add New Task</h2>
+        <form action="{% url 'search_tasks' %}" method="get">
+          <input type="text" name="query" placeholder="Search tasks..." value="{{ query }}">
+          <button type="submit">Search</button>
+      </form>
         <form method="POST">
           {% csrf_token %}
           <button type="submit" formaction="{% url 'add_task' %}">
