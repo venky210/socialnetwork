@@ -12,24 +12,24 @@ def homepage(request):
     return render(request,'homepage.html')
 
 def registration(request):
-    UFO=userform()
+    form=userform()
 
-    d={'user':UFO}
+    d={'user':form}
     if request.method=='POST':
-        ufd=userform(request.POST)
+        user=userform(request.POST)
        
-        if ufd.is_valid():
-            MUFDO=ufd.save(commit=False)
-            pw=ufd.cleaned_data['password']
-            MUFDO.set_password(pw)
-            MUFDO.save()
+        if user.is_valid():
+            modifyuser=user.save(commit=False)
+            pw=user.cleaned_data['password']
+            modifyuser.set_password(pw)
+            modifyuser.save()
             
             return HttpResponse('Registration is successfully')
         else:
             return HttpResponse('user already register...')
     return render(request,'registration.html',d)
 
-
+ 
 
 def user_login(request):
     if request.method == 'POST':
