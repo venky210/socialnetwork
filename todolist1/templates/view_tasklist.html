@@ -66,6 +66,12 @@
         cursor: pointer;
         transition: background-color 0.3s;
       }
+      .search-container {
+        display: flex;
+        justify-content:right;
+
+      }
+      
 
       button:hover {
         background-color: #0056b3;
@@ -90,15 +96,14 @@
       <div class="title-container">
         <a class="anchor" href="{% url 'logout' %}">Logout</a>
       </div>
-      <h1>To-Do List</h1>
-      
-
-      <div>
-        <h2>Add New Task</h2>
+      <h1>To-Do List</h1> 
+      </div class="search-container">
         <form action="{% url 'search_tasks' %}" method="get">
           <input type="text" name="query" placeholder="Search tasks..." value="{{ query }}">
           <button type="submit">Search</button>
       </form>
+      </div><br>
+      <div>
         <form method="POST">
           {% csrf_token %}
           <button type="submit" formaction="{% url 'add_task' %}">
