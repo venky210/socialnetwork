@@ -10,6 +10,7 @@ class userform(forms.ModelForm):
         help_texts={'username':''}
 
 class TaskForm(forms.ModelForm):
+    is_task = forms.BooleanField(label='Task is completed',required=False)
     class Meta:
         model=Task
-        fields=['title', 'description',]                                                     
+        fields=['title', 'description','is_task']                                                     
