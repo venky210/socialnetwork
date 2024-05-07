@@ -110,6 +110,21 @@
             Add Task
           </button>
         </form>
+      </div><br>
+      <form method="POST">
+        {% csrf_token %}
+        <button type="submit" formaction="{% url 'pending_tasks' %}">
+          Pending Task
+        </button>
+      </form>
+    </div>
+      <div><br>
+        <form method="POST">
+          {% csrf_token %}
+          <button type="submit" formaction="{% url 'completed_tasks' %}">
+            Completed Task
+          </button>
+        </form>
       </div>
 
       <div>

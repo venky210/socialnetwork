@@ -96,6 +96,7 @@ def completed_tasks(request):
     completed_tasks = Task.objects.filter(completed=True)
     return render(request, 'completed_tasks.html', {'completed_tasks': completed_tasks})
 
+
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     if request.method == 'POST':
