@@ -29,7 +29,7 @@ def create_category(request):
         if form.is_valid():
             # Process the form data
             name = form.cleaned_data['name']
-            description = form.cleaned_data['description']
+          
             # Save category to the database (if using a model)
             # Redirect to a success page or another URL
             return redirect('success_page')
