@@ -24,8 +24,6 @@ def user_login(request):
     return render(request, 'login.html', {'form': form, 'error_message': error_message})
 
 
-from django.shortcuts import render, redirect
-from .forms import CategoryForm
 def create_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
