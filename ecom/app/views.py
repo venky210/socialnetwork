@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from app.forms import UserLoginForm,CategoryForm
+from .models import Category
 
 def user_login(request):
     if request.method == 'POST':
@@ -23,25 +24,25 @@ def user_login(request):
     return render(request, 'login.html', {'form': form, 'error_message': error_message})
 
 
+from django.shortcuts import render, redirect
+from .forms import CategoryForm
 def create_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
-            # Process the form data
-            name = form.cleaned_data['name']
-          
-            # Save category to the database (if using a model)
-            # Redirect to a success page or another URL
-            return redirect('success_page')
+            form.save()  # Save the form instance to the database
+            return redirect('view_categories')  # Redirect to view_categories URL upon successful form submission
     else:
         form = CategoryForm()
     
     return render(request, 'create_category.html', {'form': form})
 
+
+
+
+
 def view_categories(request):
-    # Retrieve all categories from the database (if using a model)
-    # categories = Category.objects.all()
-    # Pass categories to the template context
-    categories = []  # Placeholder for demonstration
+    categories = Category.objects.all()
     return render(request, 'view_categories.html', {'categories': categories})
+
 
