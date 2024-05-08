@@ -24,23 +24,29 @@ def user_login(request):
     return render(request, 'login.html', {'form': form, 'error_message': error_message})
 
 
+
+
+
 def create_category(request):
-    if request.method == 'POST':
-        form = CategoryForm(request.POST)
-        if form.is_valid():
-            form.save()  # Save the form instance to the database
-            return redirect('view_categories')  # Redirect to view_categories URL upon successful form submission
+    if request.method == 'POST':  # If the request method is POST (form submission)
+        form = CategoryForm(request.POST)  # Bind form data to CategoryForm
+        if form.is_valid():  # If form data is valid
+            category = form.save()  # Save the form data to create a new Category object
+            return redirect('category_list')  # Redirect to the category list page
     else:
-        form = CategoryForm()
+        form = CategoryForm()  # If the request method is GET, create a new, empty CategoryForm
     
-    return render(request, 'create_category.html', {'form': form})
+    return render(request, 'create_category.html', {'form': form})  # Render the create_category.html template with the form
 
 
 
 
 
-def view_categories(request):
+
+def category_list(request):
     categories = Category.objects.all()
-    return render(request, 'view_categories.html', {'categories': categories})
+    return render(request, 'category_list.html', {'categories': categories})
+
+
 
 
