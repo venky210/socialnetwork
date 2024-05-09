@@ -1,0 +1,17 @@
+<!-- selected_time_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Time List</title>
+</head>
+<body>
+    <h2>Selected Time List</h2>
+    <ul>
+        {% for selected_time in selected_times %}
+            <li>{{ selected_time }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
