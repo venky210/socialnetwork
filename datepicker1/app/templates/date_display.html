@@ -1,0 +1,17 @@
+<!-- datetimepicker_app/templates/date_display.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Display</title>
+</head>
+<body>
+    <h2>Date Display</h2>
+    {% if selected_date %}
+        <p>Selected Date: {{ selected_date.selected_date }}</p>
+    {% else %}
+        <p>No date selected yet.</p>
+    {% endif %}
+</body>
+</html>
