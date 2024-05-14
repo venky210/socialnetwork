@@ -53,10 +53,7 @@
         cursor: pointer;
       }
 
-      form {
-        display: flex;
-        flex-direction: column;
-      }
+      
 
       button {
         margin-left: 10px;
@@ -111,29 +108,18 @@
         <form action="{% url 'search_tasks' %}" method="get">
           <input type="text" name="query" placeholder="Search tasks..." value="{{ query }}">
           <button type="submit">Search</button>
-      </form>
+        </form>
       </div><br>
       <div>
         <form method="POST">
           {% csrf_token %}
-          <button type="submit" formaction="{% url 'add_task' %}">
-            Add Task
-          </button>
-        </form>
-      </div><br>
-      <form method="POST">
-        {% csrf_token %}
-        <button type="submit" formaction="{% url 'pending_tasks' %}">
-          Pending Task
-        </button>
-      </form>
-    </div>
-      <div><br>
-        <form method="POST">
-          {% csrf_token %}
-          <button type="submit" formaction="{% url 'completed_tasks' %}">
-            Completed Task
-          </button>
+          <button type="submit" formaction="{% url 'add_task' %}"> Add Task </button>  
+          
+          <button type="submit" formaction="{% url 'pending_tasks' %}">  Pending Task </button>
+          
+          <button type="submit" formaction="{% url 'completed_tasks' %}">Completed Task </button>
+            
+         
         </form>
       </div>
 
