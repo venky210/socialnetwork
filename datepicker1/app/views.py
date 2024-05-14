@@ -10,14 +10,14 @@ def datepicker(request):
         form = DateForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('add_task')
+            return redirect('view_tasklist')
     else:
         form = DateForm()
     return render(request, 'datepicker_form.html', {'form': form})
 
 def date_display(request):
     selected_date = SelectedDate.objects.last()  
-    return render(request, 'view_tasklist', {'selected_date': selected_date})
+    return render(request, 'date_display.html', {'selected_date': selected_date})
 
 
 def create_selected_time(request):
@@ -113,6 +113,7 @@ def add_task(request):
 
 def view_tasklist(request):
     tasks = Task.objects.all()
+    selected_date = SelectedDate.objects.last()  
     return render(request, 'view_tasklist.html', {'tasks': tasks})
 
 
