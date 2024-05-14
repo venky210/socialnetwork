@@ -17,7 +17,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 75vh; /* Set the height of the container to full viewport height */
+        height: 90vh; /* Set the height of the container to full viewport height */
       }
 
       /* Style for form elements */
@@ -68,6 +68,14 @@
     </style>
   </head>
   <body>
+    <div>
+      <h2>Date Display</h2>
+      {% if selected_date %}
+          <p>Selected Date: {{ selected_date.selected_date }}</p>
+      {% else %}
+          <p>No date selected yet.</p>
+      {% endif %}
+    </div>
     <div class="main-container">
       <h1>Add Task</h1>
       <div class="container">

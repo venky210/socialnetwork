@@ -30,7 +30,7 @@ class SelectedTimeForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = [ 'title', 'description', 'completed']
+        fields = [ 'title','time','description', 'completed']
         widgets = {
             'time': forms.TimeInput(attrs={'type': 'time'}),
         }

@@ -82,6 +82,7 @@
             <ul>
                 {% for task in pending_tasks %}
                 <li>
+                    {{ task.time }}
                     {{ task.title }}
                     <div class="button-container">
                         <form method="POST" style="display: inline">

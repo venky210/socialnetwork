@@ -14,11 +14,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        
       }
       .title-container {
         display: flex;
-        justify-content: end;
-        align-items: end;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-bottom: 20px;
       }
 
       h1,
@@ -41,9 +43,9 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        width: 400px;
       }
 
       li:hover {
@@ -87,11 +89,19 @@
       }
       .button-container {
         display: flex;
-        justify-content: right;
+        justify-content: flex-end;
       }
     </style>
   </head>
   <body>
+    <div>
+      <h2>Date Display</h2>
+      {% if selected_date %}
+          <p>Selected Date: {{ selected_date.selected_date }}</p>
+      {% else %}
+          <p>No date selected yet.</p>
+      {% endif %}
+    </div>
     <div>
       <div class="title-container">
         <a class="anchor" href="{% url 'logout' %}">Logout</a>
@@ -131,7 +141,9 @@
         <h3>Existing Tasks:</h3>
         <ul>
           {% for task in tasks %}
+  
           <li>
+            {{ task.time }}
             {{ task.title }}
             <form method="POST" style="display: inline">
               {% csrf_token %}
