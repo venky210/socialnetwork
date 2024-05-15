@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect,HttpResponse,get_object_or_404
 from app.forms import *
 from app.models import *
@@ -17,7 +16,7 @@ def datepicker(request):
 
 def date_display(request):
     selected_date = SelectedDate.objects.last()  
-    return render(request, 'date_display.html', {'selected_date': selected_date})
+    return render(request, 'view_tasklist.html', {'selected_date': selected_date})
 
 
 def create_selected_time(request):
@@ -81,20 +80,6 @@ def search_tasks(request):
         tasks = Task.objects.all()
     return render(request, 'search_results.html', {'tasks': tasks, 'query': query})
 
-
-# def add_task(request):
-#     if request.method == 'POST':
-#         form = TaskForm(request.POST)
-#         if form.is_valid():
-#             task = form.save(commit=False)
-#             # Here, you can perform any additional operations before saving the task
-#             task.save()
-#             return redirect('view_tasklist')  # Redirect to the 'view_tasklist' view after saving
-#     else:
-#         form = TaskForm()
-#     return render(request, 'add_task.html', {'form': form})
-
-
 def add_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
@@ -108,16 +93,9 @@ def add_task(request):
     return render(request, 'add_task.html', {'form': form})
 
 
-
-
-
 def view_tasklist(request):
-    tasks = Task.objects.all()
-    selected_date = SelectedDate.objects.last()  
+    tasks = Task.objects.all() 
     return render(request, 'view_tasklist.html', {'tasks': tasks})
-
-
-
 
 def update_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
