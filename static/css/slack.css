@@ -1,0 +1,160 @@
+body{
+    background-color: #e3e1e1;
+}
+.side-pane {
+    width: 250px; 
+    height: 100%;
+    margin-top: 3.5%;
+    background-color: #ccc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+
+.side-pane a {
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+}
+
+
+.side-pane a:hover {
+    color:#0056b3;
+}
+
+
+.side-pane a.active {
+   
+    
+    color: #4CAF50;
+}
+
+
+
+.top-fixed {
+    position: fixed;
+    top: 0;
+    left:0;
+    width:98.5%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+   
+}
+
+.top-fixed h3 {
+    margin: 0;
+}
+h3{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-shadow: 1.5px 1.5px 1.5px rgba(0, 0, 0, 0.5);
+
+
+        font-size: 20px;
+}
+input{
+    border-radius: 6px;
+    margin-left: 3px;
+}
+button{
+    border: none;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    padding: 3px;
+    margin-left: 3px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #0056b3;
+}
+section{
+    display: none;
+}
+section:target{
+    display: block;
+    margin-left: 23%;
+    margin-top: 5%;
+    font-size: 18px;
+   
+    
+}
+section:target a{
+    text-decoration: none;
+}
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 100vh;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 18.5%;
+   
+    width:78.5%;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+}
+
+footer input[type="text"] 
+{
+    width: 80%;
+    padding: 10px;
+   
+    border: none;
+    border-radius: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+#fileInputLabel{
+    color:#fff;
+}
+
+footer button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+footer button:hover {
+    background-color: #0056b3;
+}
+h2{
+    margin-left: 40%;
+  
+}
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(10px); 
+    margin-left: 18%;
+    z-index: 1000;
+    display: none; 
+}
+
+#add-channel-form {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+   margin-right: 30%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1001; 
+}

@@ -1,0 +1,20 @@
+
+{% load static %}
+
+{% block title %}
+    <title>Add People</title>
+    <link rel="stylesheet" href="{% static 'css/addpeople.css' %}">
+{% endblock %}
+
+{% block block_body %}
+    <nav class="top-fixed">
+        <h3>Add People</h3>
+        <a href="#"><input type="submit" value="Add"></a>
+    </nav>
+    <div class="container">
+        <form>
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" placeholder="Enter Email..."><br>
+        </form>
+    </div>
+{% endblock %}

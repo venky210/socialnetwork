@@ -1,0 +1,24 @@
+
+{% load static %}
+{% block title %}
+    <title>editchannel</title>
+    <link rel="stylesheet" href="{% static 'css/editchannel.css' %}">
+{% endblock %}
+
+{% block block_body %}
+    <nav class="top-fixed">
+        <h3>Edit Channel</h3>
+        <a href=""><input type="submit" value="Save"></a>
+    </nav>
+    <div class="container">
+        <form>
+            <label class="name" for="name">Name</label><br>
+            <input type="text" name="name" id="name" placeholder="Enter New Channel Name..."><br>
+            <label class="description" for="des">Description</label><br>
+            <input type="text" name="des" id="des" placeholder="Enter Description..."><br>
+            <label class="title" for="title">Title</label><br>
+            <input type="text" name="title" id="title" placeholder="Enter Title..."><br>
+        </form>
+    </div>
+    
+{% endblock %}
