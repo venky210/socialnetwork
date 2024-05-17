@@ -18,21 +18,6 @@ def date_display(request):
     selected_date = SelectedDate.objects.last()  
     return render(request, 'view_tasklist.html', {'selected_date': selected_date})
 
-
-def create_selected_time(request):
-    if request.method == 'POST':
-        form = SelectedTimeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('selected_time_list')  
-    else:
-        form = SelectedTimeForm()
-    return render(request, 'selected_time_form.html', {'form': form})
-
-def selected_time_list(request):
-    selected_times = SelectedTime.objects.all()
-    return render(request, 'selected_time_list.html', {'selected_times': selected_times})
-
  
 def homepage(request):
     return render(request,'homepage.html')

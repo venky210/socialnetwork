@@ -17,15 +17,7 @@ class DateForm(forms.ModelForm):
         widgets = {
             'selected_date': forms.DateInput(attrs={'type': 'date'})
         }
-class SelectedTimeForm(forms.ModelForm):
-    class Meta:
-        model = SelectedTime
-        fields = ['selected_time']  # This should match the field name in SelectedTime model
-        widgets = {
-            'selected_time': forms.TimeInput(attrs={'type': 'time'}),
-        }
-
-
+        
 
 class TaskForm(forms.ModelForm):
     class Meta:
