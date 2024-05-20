@@ -13,5 +13,30 @@
     {% else %}
         <p>No date selected yet.</p>
     {% endif %}
+    <div>
+        <h3>Existing Tasks:</h3>
+        <ul>
+          {% for task in tasks %}
+  
+          <li>
+            {{ task.time }}
+            {{ task.title }}
+            <form method="POST" style="display: inline">
+              {% csrf_token %}
+              <input type="hidden" name="task_id" value="{{ task.id }}" />
+              <div class="button-container">
+                <button
+                  type="submit"
+                  formaction="{% url 'update_task' task.id %}"
+                >
+                  Update
+                </button>
+                <button
+                  type="submit"
+                  formaction="{% url 'delete_task' task.id %}"
+                >
+                  Delete
+                </button>
+              </div>
 </body>
 </html>

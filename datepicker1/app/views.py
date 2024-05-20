@@ -9,7 +9,7 @@ def datepicker(request):
         form = DateForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('view_tasklist')
+            return redirect('date_display')
     else:
         form = DateForm()
     return render(request, 'datepicker_form.html', {'form': form})
