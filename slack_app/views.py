@@ -7,8 +7,7 @@ def slack(request):
 
 
 def editchannel(request):
-    if request.method=='POST':
-        return redirect('slack')
+   
     return render(request,'editchannel.html')
 
 
