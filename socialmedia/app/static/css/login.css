@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-shadow: 1.5px 1.5px 1.5px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    background-color: #e3e1e1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items at the start of the flex container */
+    height: 100vh;
+    padding-top: 5vh; /* Add padding to create space from the top */
+}
+
+.login-container {
+    width: 100%;
+    max-width: 360px;
+    padding: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.login-box h1 {
+    font-size: 2rem;
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddfe2;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f5f6f7;
+}
+
+.input-group input:focus {
+    border-color: #1877f2;
+    outline: none;
+}
+
+.button-group {
+    margin-top: 10px;
+}
+
+.button-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.button-group button:hover {
+    background-color: #1877f2;
+}
+
+.forgot-password,
+.create-account {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.forgot-password a,
+.create-account a {
+    color: #1877f2;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.forgot-password a:hover,
+.create-account a:hover {
+    text-decoration: underline;
+}

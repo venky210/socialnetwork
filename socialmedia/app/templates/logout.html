@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logout</title>
+    <style>
+        /* CSS for styling the page */
+        body {
+            background-color: #e3e1e1; /* Light blue color */
+            margin: 0; /* Remove default margin */
+            font-family: Arial, sans-serif; /* Font style */
+            text-align: center; /* Center text */
+            padding-top: 50px; /* Padding at the top */
+        }
+
+        /* Style for the logout button */
+        button {
+            padding: 10px 20px; /* Padding inside button */
+            background-color: #28a745; /* Dark gray color */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 16px; /* Font size */
+            cursor: pointer; /* Pointer cursor */
+        }
+
+        /* Hover effect for the logout button */
+        button:hover {
+            background-color: #0056b3; /* Lighter gray color */
+        }
+    </style>
+</head>
+<body>
+    <h1>Are you sure you want to log out?</h1>
+    <button id="btnLogout">Log Out</button>
+
+    <script>
+        // JavaScript for handling the logout process
+        document.getElementById('btnLogout').addEventListener('click', function() {
+            // Implement the logout functionality here, for example:
+            // 1. Clear session data or authentication tokens
+            // 2. Redirect the user to the login page
+
+            // Simulating the process of logging out
+            // Clear any stored session data (this is just an example)
+            localStorage.clear();
+
+            // Redirect to the login page
+            window.location.href = 'Register.html';
+        });
+    </script>
+</body>
+</html>
