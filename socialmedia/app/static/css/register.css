@@ -33,7 +33,7 @@ h2 {
 
 /* Form container styles */
 .form-container {
-    padding: 0 20px;
+    padding-left:30px;
 }
 
 /* Input container styles */
@@ -71,7 +71,7 @@ h2 {
 
 /* Button styles */
 .button {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     border: none;
     border-radius: 5px;
