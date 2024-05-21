@@ -18,3 +18,8 @@ def change_password(request):
 
 def logout(request):
     return render(request,'logout.html')
+def base(request):
+    return render(request,'base.html')
+
+def update_profile(request):
+    return render(request,'update_profile.html')
