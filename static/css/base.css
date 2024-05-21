@@ -91,12 +91,7 @@ section:target{
 section:target a{
     text-decoration: none;
 }
-body {
-    margin: 0;
-    padding: 0;
-    position: relative;
-    min-height: 100vh;
-}
+
 
 footer {
     position: fixed;
@@ -166,4 +161,11 @@ h2{
 }
 #channelName{
     color: #333;
+    position: fixed;
+  
+}
+
+.container{
+    position: fixed;
+    margin-top: 2%;
 }

@@ -3,7 +3,7 @@ from django.urls import path
 from slack_app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',slack,name='slack'),
+    path('',home,name='home'),
     
     path('addpeople/',addpeople,name='addpeople'),
 ]

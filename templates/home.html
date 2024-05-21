@@ -2,15 +2,18 @@
 {% load static %}
 
 {% block title %}
-    <title>Slack</title>
+    <title>home</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    
 {% endblock %}
 
 {% block content %}
+
 <div class="side-pane">
-    <a href="#" class="active" onclick="toggleChannels('channel-links')"><b><i> &#9660;Channels</i></b></a>
+    <a href="#channels" class="active" onclick="toggleChannels('channel-links')"><b><i> &#9660;Channels</i></b></a>
     <div id="channel-links" style="display: none;">
         <a href="#channel">Channel 1</a>
-        <a href="#channel">Channel 2</a>
+        <a href="#channel2">Channel 2</a>
         <a href="#channel">Channel 3</a>
         <a href="#" onclick="toggleAddChannelForm()">+ Add Channel</a>
 
@@ -29,7 +32,7 @@
     <a href="#" class="active" onclick="toggleSection('dms')"><b><i><i class="fas fa-envelope"></i> DMs</i></b></a>
     <div id="dms" style="display: none;"></div>
     <hr>
-    <a href="#" class="active" onclick="toggleSection('activity')"><b><i><i class="fas fa-bell"></i> Activity</i></b></a>
+    <a href="#activitys" class="active" onclick="toggleSection('activity')"><b><i><i class="fas fa-bell"></i> Activity</i></b></a>
     <div id="activity" style="display: none;">
         <a href="#mentions">@mentions</a>
         <a href="#threads">Threads</a>
@@ -37,12 +40,19 @@
         <a href="#reactions">Reactions</a>
     </div>
 </div>
+<section id="channels">
+    <h4>No channel selected. Please choose a channel from the list.</h4>
+</section>
+<section id="activitys">
+    <h4>No Activity Selected. Please Choose a activity from the list.</h4>
+</section>
 
 <section id="channel">
     <h3><a href="#" id="channelName">#channel Name</a></h3>
     <div class="container">
-        <b><a href=""><i>Add People</i></a></b>
+        <b><a href="#"><i>Add People</i></a></b>
     </div>
+    
     <footer class="bottom-fixed">
         <input type="file" name="" id="fileInput" style="display: none;">
         <label for="fileInput" id="fileInputLabel">➕ Attach File</label>
@@ -50,6 +60,21 @@
         <button>Send</button>
     </footer>
 </section>
+<section id="channel2">
+    <h3><a href="#" id="channelName">#channel Name</a></h3>
+    <div class="container">
+        <b><a href=""><i>Add People</i></a></b>
+    </div>
+   <h5>usename</h5>
+    
+    <footer class="bottom-fixed">
+        <input type="file" name="" id="fileInput" style="display: none;">
+        <label for="fileInput" id="fileInputLabel">➕ Attach File</label>
+        <input type="text" name="" id="" placeholder="Type your message...">
+        <button>Send</button>
+    </footer>
+</section>
+
 <section id="mentions">
     <h3>Activity</h3>
     <h2>No @mentions yet</h2>
@@ -69,6 +94,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <script>
+    
   
 
    
@@ -143,8 +169,8 @@
                 form.style.display = 'block';
             }
         }
-        
-        
+
+      
     </script>
 
 {% endblock %}
